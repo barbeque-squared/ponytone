@@ -79,7 +79,7 @@ def song_info(tar: tarfile.TarFile, path: str):
     if 'END' in parsed:
         duration = int(parsed['END']) / 1000
     else:
-        duration = mutagen.mp3.MP3(tar.extractfile(mp3_path)).info.length
+        duration = mutagen.File(tar.extractfile(mp3_path)).info.length
     if 'START' in parsed:
         duration -= float(parsed['START'].replace(',', '.'))
     is_mlk = 'mylittlekaraoke' in parsed.get('COMMENT', '')
